@@ -5,13 +5,13 @@
     <title>Logical</title>
     <meta name="description" content="The first AI driven visual development platform.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/favicon.png?v2" />
-    <link rel="apple-touch-icon" href="/favicon.png?v2" />
+    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
     <style type="text/css">
       @font-face {
         font-family: 'Bauziet Variable';
-        src: url("/Bauziet-Variable.ttf");
+        src: url("Bauziet-Variable.ttf");
       }
 
       *{box-sizing:border-box}html,body,ul,ol,li,dl,dd,dt,form,fieldset,button,h1,h2,h3{margin:0;padding:0}ul,ol{list-style:none}a{text-decoration:none}table{border-collapse:collapse;border-spacing:0}
@@ -46,6 +46,10 @@
         font-size: 120px;
         line-height: 1em;
         font-weight: 560;
+      }
+
+      img {
+        width: 100%;
       }
 
       footer {
@@ -113,15 +117,15 @@
         width: 100%;
         left: 0;
         right: 0;
-        bottom: 0;
+        bottom: -10%;
         padding: 0;
         margin: 0;
         line-height: 0;
-        transform: translateY(40%) translateX(-25%) scale(0.5);
+        transform: translateX(-25%) scale(0.5);
         z-index: 2;
         pointer-events: none;
-        transition: transform 0.1s ease-out;
-        will-change: transform;
+        transition: transform 0.1s ease-out, bottom 0.1s ease-out;
+        will-change: transform, bottom;
       }
 
       #screens figure {
@@ -132,24 +136,54 @@
         left: 0;
         right: 0;
         transform: translateY(100%);
-        transition: transform 0.4s ease-in-out;
+        transition: transform 0.35s ease-in-out;
         will-change: transform;
-      }
-
-      #screens img {
-        width: 100%;
       }
 
       #screens.section1 #screen1 {
         transform: translateY(0);
       }
-
       #screens.section2 #screen2 {
         transform: translateY(0);
       }
-
       #screens.section3 #screen3 {
         transform: translateY(0);
+      }
+      #screens.section4 #screen4 {
+        transform: translateY(0);
+      }
+
+      #elements figure {
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+      }
+
+      #ui1 {
+        top: -90px;
+        left: 15%;
+        margin-left: -15%;
+        width: 680px;
+        height: 364px;
+      }
+      #ui2 {
+        top: 28%;
+        left: -90px;
+        width: 615px;
+        height: 349px;
+      }
+      #ui3 {
+        right: -75px;
+        bottom: -100px;
+        width: 370px;
+        height: 590px;
+      }
+      #ui4 {
+        bottom: -200px;
+        width: 462px;
+        height: 515px;
       }
 
       section {
@@ -176,6 +210,7 @@
         align-items: flex-start;
         padding: 0;
         height: 100%;
+        width: 100%;
       }
 
       #hero {
@@ -227,7 +262,7 @@
       #final .right {
         width: 35%;
         height: 100%;
-        background: #141616 url('dark-bg.jpg') no-repeat center center;
+        background: #141616 url('/images/dark-bg.jpg') no-repeat center center;
         background-size: cover;
       }
 
@@ -286,7 +321,7 @@
         box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5), 0px 2px 3px rgba(0, 0, 0, 0.05), 0px 4px 20px rgba(0, 0, 0, 0.04);
         border-radius: 8px;
         padding: 0 10px 0 15px;
-        background: #FFFFFF url('arrow-dropdown.svg') no-repeat right 10px center;
+        background: #FFFFFF url('/images/arrow-dropdown.svg') no-repeat right 10px center;
       }
 
       ::selection {
@@ -320,13 +355,16 @@
 
     <div id="screens" class="section1">
       <figure id="screen1">
-        <img src="index.png" alt="Logical App">
+        <img src="images/index.png" alt="Logical App">
       </figure>
       <figure id="screen2">
-        <img src="index2.png" alt="Logical App">
+        <img src="images/collections.png" alt="Logical App">
       </figure>
       <figure id="screen3">
-        <img src="index3.png" alt="Logical App">
+        <img src="images/apis.png" alt="Logical App">
+      </figure>
+      <figure id="screen4">
+        <img src="images/functions.png" alt="Logical App">
       </figure>
     </div>
     
@@ -337,7 +375,20 @@
         <div id="heroLeftBg" class="hero-bg"></div>
       </div>
       <div class="right">
-        <p>stuff</p>
+        <div id="elements">
+          <figure id="ui1">
+            <img src="images/deploy.png" alt="Logical App">
+          </figure>
+          <figure id="ui2">
+            <img src="images/env-card.png" alt="Logical App">
+          </figure>
+          <figure id="ui3">
+            <img src="images/type.png" alt="Logical App">
+          </figure>
+          <figure id="ui4">
+            <img src="images/modal.png" alt="Logical App">
+          </figure>
+        </div>
         <div id="heroRightBg" class="hero-bg"></div>
       </div>
     </section>
@@ -348,13 +399,18 @@
     </section>
 
     <section id="section2">
-      <h1>Build Better Backends</h1>
-      <p>The only platform that gives AI the ability to autonomously build web services.</p>
+      <h1>Get the Full Stack</h1>
+      <p>Backends in 1-click: database, API, frontend, etc. Never manage infrastructure again.</p>
     </section>
 
     <section id="section3">
-      <h1>Another One</h1>
-      <p>The only platform that gives AI the ability to autonomously build web services.</p>
+      <h1>Launch Faster</h1>
+      <p>Logical can get systems to market in minutes instead of weeks.</p>
+    </section>
+
+    <section id="section4">
+      <h1>Build With AI</h1>
+      <p>AI teammates can write, test, and deploy code on their own.</p>
     </section>
 
     <section id="final">
@@ -411,20 +467,25 @@
     const $hero = document.getElementById("hero");
     const $heroRightBg = document.getElementById("heroRightBg");
     const $heroLeftBg = document.getElementById("heroLeftBg");
+    const $ui1 = document.getElementById("ui1");
+    const $ui2 = document.getElementById("ui2");
+    const $ui3 = document.getElementById("ui3");
+    const $ui4 = document.getElementById("ui4");
     const $screen1 = document.getElementById("screen1");
     const $screen2 = document.getElementById("screen2");
     const $section1 = document.getElementById("section1");
     const $section2 = document.getElementById("section2");
     const $section3 = document.getElementById("section3");
+    const $section4 = document.getElementById("section4");
 
     const $heroHeight = $hero.offsetHeight;
     const $heroScrollStart = 0;
     const $heroScrollStartMove = $heroScrollStart + 150;
     const $finalPosition = $final.offsetTop;
     const $finalHeight = $final.offsetHeight;
-    const $section1Position = $section1.offsetTop - ($section1.offsetHeight * .9);
-    const $section2Position = $section2.offsetTop - ($section2.offsetHeight * .9);
-    const $section3Position = $section3.offsetTop - ($section3.offsetHeight * .9);
+    const $section2Position = $section2.offsetTop - ($section2.offsetHeight * .75);
+    const $section3Position = $section3.offsetTop - ($section3.offsetHeight * .75);
+    const $section4Position = $section4.offsetTop - ($section4.offsetHeight * .75);
     
 
     window.addEventListener("scroll", () => {
@@ -452,6 +513,10 @@
         $hero.style.transform = `translateY(${translateY}%)`;
         $header.style.transform = `translateY(${Math.max(translateY, -25)}%)`;
         $header.style.width = `${Math.min(50 + (translateY * -1), 100)}%`;
+        $ui1.style.transform = `translateY(${translateY * -4}px)`;
+        $ui2.style.transform = `translateX(${translateY * 1}px)`;
+        $ui3.style.transform = `translateX(${translateY * -3}px)`;
+        $ui4.style.transform = `translateY(${translateY * 8}px)`;
         $wordmark.style.transform = `scale(${sizeDown}%)`;
         $mark.style.transform = `scale(${sizeDown}%) rotate(${Math.max((100 - (translateY *-1)) / 100, 0)}turn)`;
         $wordmark.classList.add("dark");
@@ -463,6 +528,10 @@
         $wordmark.style.transform = `scale(1)`;
         $mark.style.transform = `scale(1) rotate(0)`;
         $wordmark.classList.remove("dark");
+        $ui1.style.transform = `translateY(0)`;
+        $ui2.style.transform = `translateX(0)`;
+        $ui3.style.transform = `translateX(0)`;
+        $ui4.style.transform = `translateY(0)`;
       }
       if (scrollPosition > $heroHeight) {
         $hero.style.transform = `translateY(-100%)`;
@@ -472,13 +541,18 @@
         $wordmark.classList.add("dark");
         $header.style.width = `100%`;
         $screens.style.transform = `translateY(0) translateX(0) scale(1)`;
+        $ui1.style.transform = `translateY(400px)`;
+        $ui2.style.transform = `translateX(-100px)`;
+        $ui3.style.transform = `translateX(300px)`;
+        $ui4.style.transform = `translateY(-800px)`;
       } else { 
         const $heroCalc = (scrollPosition / $heroHeight) * 100;
         if ($heroCalc >= 0) {
-          const translateY = Math.max(40 + ($heroCalc * -1), 0);
+          const translateY = Math.min(-10 + ($heroCalc), 0);
           const translateX = Math.min(-25 + $heroCalc, 0);
           const scaleValue = Math.min(50 + ($heroCalc * 2), 100);
-          $screens.style.transform = `translateY(${translateY}%) translateX(${translateX}%) scale(${scaleValue}%)`;
+          $screens.style.transform = ` translateX(${translateX}%) scale(${scaleValue}%)`;
+          $screens.style.bottom = `${translateY}%`;
         }
       }
 
@@ -487,6 +561,9 @@
       }
       if (scrollPosition >= $section3Position) {
         $screens.className = "section3";
+      } 
+      if (scrollPosition >= $section4Position) {
+        $screens.className = "section4";
       } 
       if (scrollPosition < $section2Position) {
         $screens.className = "section1";
