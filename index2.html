@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.png" />
     <link rel="apple-touch-icon" href="favicon.png" />
+    <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
     <style type="text/css">
       @font-face {
         font-family: 'Bauziet Variable';
@@ -333,18 +334,18 @@
         <p>Sign up now to secure your place in line, and get notified when we launch.</p>
       </div>
       <div class="right">
-        <form>
+        <form id="waitlistForm" class="launchlist-form" method="post" action="https://getlaunchlist.com/s/b2WvJw" target="_blank" onsubmit="return validateForm()">
           <div class="input">
             <label>Name</label>
-            <input type="text" placeholder="Cool Person">
+            <input type="text" placeholder="Cool Person" id="nameField">
           </div>
           <div class="input">
             <label>Email</label>
-            <input type="email" placeholder="you@cool.site">
+            <input type="email" placeholder="you@cool.site" id="emailField">
           </div>
           <div class="input">
             <label>Role</label>
-            <select>
+            <select id="roleField">
               <option value="fullstack">Fullstack Developer</option>
               <option value="backend">Backend Developer</option>
               <option value="frontend">Frontend Developer</option>
@@ -354,6 +355,7 @@
               <option value="other">Other</option>
             </select>
           </div>
+          <input type="hidden" name="_gotcha" />
           <div class="submit">
             <input type="submit" value="Join Waitlist">
           </div>
@@ -368,6 +370,10 @@
   </body>
 
   <script type="text/javascript">
+    const $form = document.getElementById("waitlistForm");
+    const $nameInput = document.getElementById('nameField');
+    const $emailInput = document.getElementById('emailField');
+    const $roleInput = document.getElementById('roleField');
     const $header = document.getElementById("header");
     const $wordmark = document.getElementById("wordmark");
     const $mark = document.getElementById("mark");
@@ -443,5 +449,21 @@
         $screens.style.transform = `translateY(${translateY}px)`;
       }
     });
+
+    function validateForm() {
+      var name = $nameInput.value;
+      var email = $emailInput.value;
+      var role = $roleInput.value;
+      if (name == "" || email == "" || role == "") {
+        alert("Please fill in all the fields.");
+        return false;
+      }
+      if (!isValidEmail(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return false;
+      }
+      return true;
+    }
   </script>
 </html>
