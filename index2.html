@@ -481,8 +481,25 @@
     }
 
     const invalidParam = hasUrlParameter("invalid");
-    if (invalidParam == "email") {
-      alert("Please enter a valid email address.");
+    if (invalidParam) {
+      window.addEventListener('load', () => {
+        $final.scrollIntoView();
+        let alertText = "";
+
+        if (invalidParam == "email") {
+          $emailInput.focus();
+          alertText = "Please enter a valid email address.";
+        } else if (invalidParam == "name") {
+          $nameInput.focus();
+          alertText = "Please enter your name.";
+        }
+
+        if (alertText) {
+          setTimeout(function() { 
+            alert(alertText)
+          }, 100);
+        }
+      });
     }
   </script>
 </html>
