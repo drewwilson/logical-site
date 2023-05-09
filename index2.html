@@ -75,12 +75,14 @@
         transform: translateY(0);
         z-index: 4;
         pointer-events: none;
+        will-change: transform;
       }
 
       #wordmark {
         transform: scale(1);
         transform-origin: center left;
         transition: color 0.5s ease, transform 0.1s ease-out;
+        will-change: transform;
       }
 
       #wordmark.dark {
@@ -91,6 +93,7 @@
         transform: scale(1) rotate(0);
         transform-origin: center center;
         transition: transform 0.1s ease-out;
+        will-change: transform;
       }
 
       @supports (mix-blend-mode: difference) {
@@ -118,15 +121,35 @@
         z-index: 2;
         pointer-events: none;
         transition: transform 0.1s ease-out;
+        will-change: transform;
       }
 
       #screens figure {
+        position: absolute;
         padding: 0;
         margin: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transform: translateY(100%);
+        transition: transform 0.4s ease-in-out;
+        will-change: transform;
       }
 
       #screens img {
         width: 100%;
+      }
+
+      #screens.section1 #screen1 {
+        transform: translateY(0);
+      }
+
+      #screens.section2 #screen2 {
+        transform: translateY(0);
+      }
+
+      #screens.section3 #screen3 {
+        transform: translateY(0);
       }
 
       section {
@@ -142,8 +165,8 @@
         justify-content: center;
       }
 
-      #firstSection {
-        margin-top: 90%;
+      #section1 {
+        margin-top: 80%;
       }
 
       #hero, #final {
@@ -295,9 +318,15 @@
       </div>
     </header>
 
-    <div id="screens">
-      <figure>
-        <img src="/Index.png" alt="Logical App">
+    <div id="screens" class="section1">
+      <figure id="screen1">
+        <img src="index.png" alt="Logical App">
+      </figure>
+      <figure id="screen2">
+        <img src="index2.png" alt="Logical App">
+      </figure>
+      <figure id="screen3">
+        <img src="index3.png" alt="Logical App">
       </figure>
     </div>
     
@@ -313,18 +342,18 @@
       </div>
     </section>
 
-    <section id="firstSection">
+    <section id="section1">
       <h1>Completely Visual</h1>
       <p>Never touch the command line, from provision to production.</p>
     </section>
 
-    <section>
+    <section id="section2">
       <h1>Build Better Backends</h1>
       <p>The only platform that gives AI the ability to autonomously build web services.</p>
     </section>
 
-    <section>
-      <h1>Build Better Backends</h1>
+    <section id="section3">
+      <h1>Another One</h1>
       <p>The only platform that gives AI the ability to autonomously build web services.</p>
     </section>
 
@@ -382,12 +411,21 @@
     const $hero = document.getElementById("hero");
     const $heroRightBg = document.getElementById("heroRightBg");
     const $heroLeftBg = document.getElementById("heroLeftBg");
+    const $screen1 = document.getElementById("screen1");
+    const $screen2 = document.getElementById("screen2");
+    const $section1 = document.getElementById("section1");
+    const $section2 = document.getElementById("section2");
+    const $section3 = document.getElementById("section3");
 
     const $heroHeight = $hero.offsetHeight;
     const $heroScrollStart = 0;
     const $heroScrollStartMove = $heroScrollStart + 150;
     const $finalPosition = $final.offsetTop;
     const $finalHeight = $final.offsetHeight;
+    const $section1Position = $section1.offsetTop - ($section1.offsetHeight * .9);
+    const $section2Position = $section2.offsetTop - ($section2.offsetHeight * .9);
+    const $section3Position = $section3.offsetTop - ($section3.offsetHeight * .9);
+    
 
     window.addEventListener("scroll", () => {
       const scrollPosition = window.scrollY;
@@ -442,6 +480,16 @@
           const scaleValue = Math.min(50 + ($heroCalc * 2), 100);
           $screens.style.transform = `translateY(${translateY}%) translateX(${translateX}%) scale(${scaleValue}%)`;
         }
+      }
+
+      if (scrollPosition >= $section2Position) {
+        $screens.className = "section2";
+      }
+      if (scrollPosition >= $section3Position) {
+        $screens.className = "section3";
+      } 
+      if (scrollPosition < $section2Position) {
+        $screens.className = "section1";
       }
 
       if (scrollPosition > $finalCalc) {
