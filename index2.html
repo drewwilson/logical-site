@@ -5,13 +5,13 @@
     <title>Logical</title>
     <meta name="description" content="The first AI driven visual development platform.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="favicon.png" />
-    <link rel="apple-touch-icon" href="favicon.png" />
+    <link rel="shortcut icon" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
     <style type="text/css">
       @font-face {
         font-family: 'Bauziet Variable';
-        src: url(Bauziet-Variable.ttf);
+        src: url("/Bauziet-Variable.ttf");
       }
 
       *{box-sizing:border-box}html,body,ul,ol,li,dl,dd,dt,form,fieldset,button,h1,h2,h3{margin:0;padding:0}ul,ol{list-style:none}a{text-decoration:none}table{border-collapse:collapse;border-spacing:0}
@@ -297,7 +297,7 @@
 
     <div id="screens">
       <figure>
-        <img src="index.png" alt="Logical App">
+        <img src="/index.png" alt="Logical App">
       </figure>
     </div>
     
@@ -464,6 +464,25 @@
         return false;
       }
       return true;
+    }
+
+    function hasUrlParameter(parameterName) {
+      const currentUrl = window.location.href;
+      if (currentUrl.indexOf("?") === -1) {
+        return false;
+      }
+      const queryString = currentUrl.split("?")[1];
+      const params = new URLSearchParams(queryString);
+      if (!params.has(parameterName)){
+        return false;
+      } else {
+        return params.get(parameterName);
+      }
+    }
+
+    const invalidParam = hasUrlParameter("invalid");
+    if (invalidParam == "email") {
+      alert("Please enter a valid email address.");
     }
   </script>
 </html>
