@@ -325,7 +325,7 @@
     <section id="final">
       <div class="left">
         <h1>Get Early Access</h1>
-        <p>Sign up now to be first in line, and get notified when we launch.</p>
+        <p>Sign up now to secure your place in line, and get notified when we launch.</p>
       </div>
       <div class="right">
         <form>
@@ -340,7 +340,9 @@
           <div class="input">
             <label>Role</label>
             <select>
-              <option value="developer">Developer</option>
+              <option value="fullstack">Fullstack Developer</option>
+              <option value="backend">Backend Developer</option>
+              <option value="frontend">Frontend Developer</option>
               <option value="designer">Designer</option>
               <option value="product">Product</option>
               <option value="founder">Founder</option>
@@ -375,10 +377,10 @@
     const $heroScrollStartMove = $heroScrollStart + 150;
     const $finalPosition = $final.offsetTop;
     const $finalHeight = $final.offsetHeight;
-    const $finalCalc = $finalPosition - ($finalHeight / 2);
 
     window.addEventListener("scroll", () => {
       const scrollPosition = window.scrollY;
+      const $finalCalc = $finalPosition - ($finalHeight / 2);
 
       if (scrollPosition >= $heroScrollStart && scrollPosition <= $heroHeight) {
         const $heroScrollCalc = (scrollPosition - $heroScrollStart) / ($heroHeight / 4);
