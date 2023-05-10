@@ -629,7 +629,7 @@
         const sizeDown = Math.max(100 - (translateY *-1), 75);
 
         $wordmark.style.transform = `scale(${sizeDown}%)`;
-        $mark.style.transform = `scale(${sizeDown}%) rotate(${Math.max((100 - (translateY *-1)) / 100, 0)}turn)`;
+        $mark.style.transform = `scale(${sizeDown}%) rotate(${Math.min((1 - (100 - (translateY *-1)) / 100), 1)}turn)`;
         $wordmark.classList.add("dark");
 
         if (winWidth > smallScreenBreakpoint) {
@@ -661,7 +661,7 @@
       }
       if (scrollPosition > $heroHeight) {
         $wordmark.style.transform = `scale(0.75)`;
-        $mark.style.transform = `scale(0.75) rotate(0)`;
+        $mark.style.transform = `scale(0.75) rotate(1turn)`;
         $wordmark.classList.add("dark");
 
         if (winWidth > smallScreenBreakpoint) {       
