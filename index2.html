@@ -711,6 +711,15 @@
         $screens.style.transform = `translateY(0)`;
         $screens.style.bottom = '0';
       }
+
+      if (winWidth > smallScreenBreakpoint) {   
+        const translateY = Math.min(scrollPosition - $finalCalc, $finalHeight);
+        if (scrollPosition > ($finalPosition - $finalHeight)) {
+          $form.style.transform = `translateX(${Math.max((translateY / -10), -50)}%)`;
+        }
+      } else {
+        $form.style.transform = `translateX(0) translateY(-50px)`;
+      }
     });
 
     window.addEventListener("resize", () => {
@@ -719,6 +728,9 @@
 
       if (winWidth <= smallScreenBreakpoint) {
         $header.style.cssText = '';
+        $form.style.transform = `translateX(0) translateY(-50px)`;
+      } else {
+        $form.style.transform = `translateX(-50%)`;
       }
 
       if (scrollPosition > $heroHeight && winWidth > smallScreenBreakpoint) {       
