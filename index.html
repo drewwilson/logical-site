@@ -729,8 +729,10 @@
       if (winWidth <= smallScreenBreakpoint) {
         $header.style.cssText = '';
         $form.style.transform = `translateX(0) translateY(-50px)`;
+        $screens.style.transform = `translateX(0) scale(1)`;
       } else {
         $form.style.transform = `translateX(-50%)`;
+        $screens.style.transform = `translateX(-25%) scale(0.5)`;
       }
 
       if (scrollPosition > $heroHeight && winWidth > smallScreenBreakpoint) {       
