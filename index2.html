@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Logical</title>
-    <meta name="description" content="The first AI driven visual development platform.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The first AI driven visual development platform." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/images/favicon.png" />
     <link rel="apple-touch-icon" href="/images/favicon.png" />
     <script src="https://getlaunchlist.com/js/widget-diy.js" defer></script>
@@ -343,6 +343,7 @@
           width: 100%;
         }
         #screens {
+          bottom: 0;
           transform: translateX(0) scale(1);
         }
         #hero, #final {
@@ -364,6 +365,9 @@
         #final .left {
           padding-bottom: 140px;
         }
+        #section1 {
+          margin-top: 0;
+        }
         form {
           margin: 0 auto;
           transform: translateX(0) translateY(-50px);
@@ -373,6 +377,33 @@
           margin-top: 0;
           justify-content: center;
           align-items: center;
+        }
+      }
+
+      @media (max-width: 800px) {
+        form {
+          width: 80%;
+        }
+      }
+
+      @media (max-width: 420px) {
+        body {
+          font-size: 20px;
+        }
+        h1 {
+          font-size: 56px;
+        }
+        #header {
+          padding: 30px 20px;
+        }
+        #hero .left, #final .left {
+          padding: 100px 30px;
+        }
+        #wordmark, #mark {
+          height: 30px;
+        }
+        section {
+          padding: 100px 30px;
         }
       }
     </style>
@@ -500,6 +531,10 @@
   </body>
 
   <script type="text/javascript">
+    const smallScreenBreakpoint = 1200;
+    const tabletBreakpoint = 800;
+    const phoneBreakpoint = 420;
+
     const $form = document.getElementById("waitlistForm");
     const $nameInput = document.getElementById('nameField');
     const $emailInput = document.getElementById('emailField');
@@ -535,62 +570,78 @@
 
     window.addEventListener("scroll", () => {
       const scrollPosition = window.scrollY;
+      const winWidth = window.innerWidth;
       const $finalCalc = $finalPosition - ($finalHeight / 2);
 
       if (scrollPosition >= $heroScrollStart && scrollPosition <= $heroHeight) {
         const $heroScrollCalc = (scrollPosition - $heroScrollStart) / ($heroHeight / 4);
         const opacityValue = Math.max((1 - $heroScrollCalc).toFixed(2), 0);
-        const translateY = Math.min(($heroScrollCalc * -100), 0);
-        $hero.style.transform = `translateY(${translateY}%)`;
-        $heroRightBg.style.opacity = opacityValue;
         $heroLeftBg.style.opacity = opacityValue;
+
+        if (winWidth > smallScreenBreakpoint) {
+          const translateY = Math.min(($heroScrollCalc * -100), 0);
+          $heroRightBg.style.opacity = opacityValue;
+          $hero.style.transform = `translateY(${translateY}%)`;
+        }
       }
       if (scrollPosition < $heroScrollStart) {
-        $heroRightBg.style.opacity = 1;
         $heroLeftBg.style.opacity = 1;
-        $hero.style.transform = `translateY(0)`;
+        if (winWidth > smallScreenBreakpoint) {
+          $hero.style.transform = `translateY(0)`;
+          $heroRightBg.style.opacity = 1;
+        }
       }
 
       if (scrollPosition >= $heroScrollStartMove && scrollPosition <= $heroHeight) {
         const $heroScrollCalc = (scrollPosition - $heroScrollStartMove) / ($heroHeight - ($heroScrollStartMove * 1));
         const translateY = Math.min(($heroScrollCalc * -100), 0);
         const sizeDown = Math.max(100 - (translateY *-1), 75);
-        $hero.style.transform = `translateY(${translateY}%)`;
-        $header.style.transform = `translateY(${Math.max(translateY, -25)}%)`;
-        $header.style.width = `${Math.min(50 + (translateY * -1), 100)}%`;
-        $ui1.style.transform = `translateY(${translateY * -4}px)`;
-        $ui2.style.transform = `translateX(${translateY * 1}px)`;
-        $ui3.style.transform = `translateX(${translateY * -3}px)`;
-        $ui4.style.transform = `translateY(${translateY * 8}px)`;
+
         $wordmark.style.transform = `scale(${sizeDown}%)`;
         $mark.style.transform = `scale(${sizeDown}%) rotate(${Math.max((100 - (translateY *-1)) / 100, 0)}turn)`;
         $wordmark.classList.add("dark");
+
+        if (winWidth > smallScreenBreakpoint) {
+          $hero.style.transform = `translateY(${translateY}%)`;
+          $header.style.transform = `translateY(${Math.max(translateY, -25)}%)`;
+          $header.style.width = `${Math.min(50 + (translateY * -1), 100)}%`;
+          $ui1.style.transform = `translateY(${translateY * -4}px)`;
+          $ui2.style.transform = `translateX(${translateY * 1}px)`;
+          $ui3.style.transform = `translateX(${translateY * -3}px)`;
+          $ui4.style.transform = `translateY(${translateY * 8}px)`;
+        }
       }
       if (scrollPosition < $heroScrollStartMove) {
-        $hero.style.transform = `translateY(0)`;
-        $header.style.transform = `translateY(0)`;
-        $header.style.width = `50%`;
         $wordmark.style.transform = `scale(1)`;
         $mark.style.transform = `scale(1) rotate(0)`;
         $wordmark.classList.remove("dark");
-        $ui1.style.transform = `translateY(0)`;
-        $ui2.style.transform = `translateX(0)`;
-        $ui3.style.transform = `translateX(0)`;
-        $ui4.style.transform = `translateY(0)`;
+
+        if (winWidth > smallScreenBreakpoint) {
+          $hero.style.transform = `translateY(0)`;
+          $header.style.transform = `translateY(0)`;
+          $header.style.width = `50%`;
+          $ui1.style.transform = `translateY(0)`;
+          $ui2.style.transform = `translateX(0)`;
+          $ui3.style.transform = `translateX(0)`;
+          $ui4.style.transform = `translateY(0)`;
+        }
       }
       if (scrollPosition > $heroHeight) {
-        $hero.style.transform = `translateY(-100%)`;
-        $header.style.transform = `translateY(-25%)`;
         $wordmark.style.transform = `scale(0.75)`;
         $mark.style.transform = `scale(0.75) rotate(0)`;
         $wordmark.classList.add("dark");
-        $header.style.width = `100%`;
-        $screens.style.transform = `translateY(0) translateX(0) scale(1)`;
-        $ui1.style.transform = `translateY(400px)`;
-        $ui2.style.transform = `translateX(-100px)`;
-        $ui3.style.transform = `translateX(300px)`;
-        $ui4.style.transform = `translateY(-800px)`;
-      } else { 
+
+        if (winWidth > smallScreenBreakpoint) {       
+          $screens.style.transform = `translateY(0) translateX(0) scale(1)`;
+          $hero.style.transform = `translateY(-100%)`;
+          $header.style.transform = `translateY(-25%)`;
+          $header.style.width = `100%`;
+          $ui1.style.transform = `translateY(400px)`;
+          $ui2.style.transform = `translateX(-100px)`;
+          $ui3.style.transform = `translateX(300px)`;
+          $ui4.style.transform = `translateY(-800px)`; 
+        }
+      } else if (winWidth > smallScreenBreakpoint) { 
         const $heroCalc = (scrollPosition / $heroHeight) * 100;
         if ($heroCalc >= 0) {
           const translateY = Math.min(-10 + ($heroCalc), 0);
@@ -617,6 +668,16 @@
       if (scrollPosition > $finalCalc) {
         const translateY = Math.min(scrollPosition - $finalCalc, $finalHeight);
         $screens.style.transform = `translateY(${translateY}px)`;
+      } else if (winWidth <= smallScreenBreakpoint) {  
+        $screens.style.cssText = '';
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      const winWidth = window.innerWidth;
+
+      if (winWidth <= smallScreenBreakpoint) {
+        $header.style.cssText = '';
       }
     });
 
